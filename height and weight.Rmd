@@ -1,0 +1,32 @@
+---
+title: "Height and Weight"
+author: "Maheen Rassell"
+date: "2022-07-29"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(primer.data)
+library(tidyverse)
+#loading libraries 
+```
+
+```{r, warning = FALSE}
+nhanes |> 
+  filter(age >=18) |>
+  select(height, weight) |>
+#filtering nhanes dataset for height n weight of adults only
+  drop_na(height, weight) |>
+#getting rid of empty rows of data in height n weight
+ ggplot(mapping =aes(height, weight)) + 
+  geom_jitter(alpha = .5) + 
+  labs(title = "Height and Weight of US Adults",
+       subtitle = "Taller people weigh more, but there are outliers on the heavy side",
+       y = "Weight (kg)",
+       x = "Height (cm)", 
+       caption = "Data collected from National Health and Nutrition Examination Survey") 
+
+#plotting height and weight of adults and labels
+```
+
